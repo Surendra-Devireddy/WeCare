@@ -1,18 +1,29 @@
-package com.surendra.WeCare.Entity;
+package com.surendra.WeCare.entity;
 
 import java.time.LocalDate;
 
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+//import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+
+//import javax.persistence.EmbeddedId;
+//import javax.persistence.Entity;
+//import javax.persistence.Id;
+//import javax.persistence.Table;
 
 @Entity
 @Table(name="coachtable")
 public class CoachEntity {
+	
 	@Id
-	@EmbeddedId
+    @GeneratedValue(generator = "coach-generator")
+    @GenericGenerator(name = "coach-generator", 
+      strategy = "com.surendra.WeCare.Utility.CoachIdGenerator")
 	 private String coachId;
      private String password;
      private String name;

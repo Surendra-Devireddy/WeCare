@@ -6,20 +6,24 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.surendra.WeCare.DTO.BookingDTO;
-import com.surendra.WeCare.Entity.BookingEntity;
-import com.surendra.WeCare.Entity.UserEntity;
 import com.surendra.WeCare.Exception.WeCareException;
 import com.surendra.WeCare.Repository.BookRepository;
 import com.surendra.WeCare.Repository.UserRepository;
 import com.surendra.WeCare.Utility.MailUtility;
+import com.surendra.WeCare.entity.BookingEntity;
+import com.surendra.WeCare.entity.UserEntity;
 
+@Service(value="bService")
 public class BookService {
    
 	@Autowired
 	private BookRepository bRep;
+	@Autowired
 	private UserRepository uRep;
+	@Autowired
 	private MailUtility mail;
 	
 	public boolean bookAppointment(String userId, String coachId, LocalDate appointmentDate, String slot) throws WeCareException {
@@ -34,7 +38,7 @@ public class BookService {
 		}else {
 			BookingEntity b = new BookingEntity();
 			b.setUserId(userId);
-			b.setCaochId(coachId);
+			b.setCoachId(coachId);
 			b.setSlot(slot);
 			b.setAppointmentDate(appointmentDate);
 			BookingEntity b1=bRep.save(b);
@@ -56,11 +60,11 @@ public class BookService {
 		}else {
 			BookingEntity b1 = new BookingEntity();
 			b1.setUserId(b.getUserId());
-			b1.setCaochId(b.getCaochId());
+			b1.setCoachId(b.getCoachId());
 			b1.setSlot(slot);
 			b1.setAppointmentDate(appointmentDate);
 			BookingEntity b2=bRep.save(b);
-			mail.sendSchedulingEmail(b.getUserId(), b.getCaochId(), u1.getEmail(), b2.getBookingId(), slot, appointmentDate);
+			mail.sendSchedulingEmail(b.getUserId(), b.getCoachId(), u1.getEmail(), b2.getBookingId(), slot, appointmentDate);
 			return true;
 		}
 	}
@@ -73,7 +77,7 @@ public class BookService {
 		UserEntity u1= u.orElseThrow(()-> new WeCareException("NO_USER_EXISTS"));
 		
 		bRep.deleteById(bookingId);
-		mail.sendCancellingEmail(b.getUserId(), b.getCaochId(), u1.getEmail(), bookingId, b.getSlot(), b.getAppointmentDate());
+		mail.sendCancellingEmail(b.getUserId(), b.getCoachId(), u1.getEmail(), bookingId, b.getSlot(), b.getAppointmentDate());
 	}
 	
 	public BookingDTO findByBookingId(Integer bookingId) throws WeCareException {
@@ -84,7 +88,7 @@ public class BookService {
 		b.setBookingId(s.getBookingId());
 		b.setAppointmentDate(s.getAppointmentDate());
 		b.setSlot(s.getSlot());
-		b.setCaochId(s.getCaochId());
+		b.setCoachId(s.getCoachId());
 		b.setUserId(s.getUserId());
 		return b;
 	}
@@ -97,7 +101,7 @@ public class BookService {
 		b.setBookingId(s.getBookingId());
 		b.setAppointmentDate(s.getAppointmentDate());
 		b.setSlot(s.getSlot());
-		b.setCaochId(s.getCaochId());
+		b.setCoachId(s.getCoachId());
 		b.setUserId(s.getUserId());
 		list.add(b);
 		});
@@ -112,7 +116,7 @@ public class BookService {
 		b.setBookingId(s.getBookingId());
 		b.setAppointmentDate(s.getAppointmentDate());
 		b.setSlot(s.getSlot());
-		b.setCaochId(s.getCaochId());
+		b.setCoachId(s.getCoachId());
 		b.setUserId(s.getUserId());
 		list.add(b);
 		});

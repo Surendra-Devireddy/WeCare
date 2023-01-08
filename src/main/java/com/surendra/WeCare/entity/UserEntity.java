@@ -1,18 +1,28 @@
-package com.surendra.WeCare.Entity;
+package com.surendra.WeCare.entity;
 
 import java.time.LocalDate;
 
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+//import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+
+//import javax.persistence.EmbeddedId;
+//import javax.persistence.Entity;
+//import javax.persistence.Id;
+//import javax.persistence.Table;
 
 @Entity
 @Table(name="usertable")
 public class UserEntity {
 	@Id
-	@EmbeddedId
+    @GeneratedValue(generator = "user-generator")
+    @GenericGenerator(name = "user-generator", 
+      strategy = "com.surendra.WeCare.Utility.UserIdGenerator")
 	 private String userId;
      private String password;
      private String name;

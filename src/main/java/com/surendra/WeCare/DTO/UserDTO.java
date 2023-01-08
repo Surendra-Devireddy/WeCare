@@ -2,17 +2,37 @@ package com.surendra.WeCare.DTO;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Email;
+
 public class UserDTO {
 	 private String userId;
+	 @NotNull(message="{password.empty}")
+     @Pattern(regexp="[a-zA-Z0-9]{5,10}",message="{password.invalid}")
      private String password;
+	 @NotNull(message="{name.empty}")
+     @Pattern(regexp="[A-Za-z]{5,30}",message="{name.invalid}")
      private String name;
      private char gender;
      private LocalDate dateOfBirth;
+     @NotNull(message="{mobilenumber.empty}")
+     @Pattern(regexp="[0-9]{10}",message="{mobilenumber.invalid}")
      private long mobileNumber;
+     @NotNull(message="{email.empty}")
+     @Email(message="{email.invalid}")
      private String email;
+     @NotNull(message="{pincode.empty}")
+     @Pattern(regexp="[0-9]{6}",message="{pincode.invalid}")
      private int pincode;
+     @NotNull(message="{city.empty}")
+     @Pattern(regexp="[A-Za-z]{5,30}",message="{city.invalid}")
      private String city;
+     @NotNull(message="{state.empty}")
+     @Pattern(regexp="[A-Za-z]{5,30}",message="{state.invalid}")
      private String state;
+     @NotNull(message="{country.empty}")
+     @Pattern(regexp="[A-Za-z]{5,30}",message="{country.invalid}")
      private String country;
 	public String getUserId() {
 		return userId;

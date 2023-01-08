@@ -3,14 +3,15 @@ package com.surendra.WeCare.Service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Service;
 
 import com.surendra.WeCare.DTO.LoginDTO;
 import com.surendra.WeCare.DTO.UserDTO;
-import com.surendra.WeCare.Entity.UserEntity;
 import com.surendra.WeCare.Exception.WeCareException;
 import com.surendra.WeCare.Repository.UserRepository;
+import com.surendra.WeCare.entity.UserEntity;
 
+@Service(value="uService")
 public class UserService {
 
 	

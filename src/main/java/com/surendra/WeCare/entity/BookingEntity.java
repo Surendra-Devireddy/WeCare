@@ -1,21 +1,27 @@
-package com.surendra.WeCare.Entity;
+package com.surendra.WeCare.entity;
 
 import java.time.LocalDate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+//import javax.persistence.Entity;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.GenerationType;
+//import javax.persistence.Id;
+//import javax.persistence.Table;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name="bookingtable")
 public class BookingEntity {
-     @Id
+	 @Id
      @GeneratedValue(strategy=GenerationType.IDENTITY)
      private Integer bookingId;
      private String userId;
-     private String caochId;
+     private String coachId;
      private LocalDate appointmentDate;
      private String slot;
      
@@ -31,11 +37,11 @@ public class BookingEntity {
  	public void setUserId(String userId) {
  		this.userId = userId;
  	}
- 	public String getCaochId() {
- 		return caochId;
+ 	public String getCoachId() {
+ 		return coachId;
  	}
- 	public void setCaochId(String caochId) {
- 		this.caochId = caochId;
+ 	public void setCoachId(String caochId) {
+ 		this.coachId = caochId;
  	}
  	public LocalDate getAppointmentDate() {
  		return appointmentDate;

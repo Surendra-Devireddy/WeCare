@@ -23,7 +23,7 @@ public class BookingDTO {
 	public String getCaochId() {
 		return caochId;
 	}
-	public void setCaochId(String caochId) {
+	public void setCoachId(String caochId) {
 		this.caochId = caochId;
 	}
 	public LocalDate getAppointmentDate() {
