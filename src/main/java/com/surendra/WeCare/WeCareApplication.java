@@ -7,8 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.surendra.WeCare.*")
-@EntityScan("com.surendra.WeCare.entity")
+
 
 public class WeCareApplication {
 
